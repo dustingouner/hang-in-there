@@ -11,6 +11,15 @@ var savePosterButton = document.querySelector('.show-saved')
 var savePosterPage = document.querySelector('.saved-posters')
 var neverMindButton = document.querySelector('.show-main')
 var backToMainButton = document.querySelector('.back-to-main')
+var makePosterButton = document.querySelector('.make-poster')
+
+// var titleInput = document.getElementById('poster-title')
+
+
+
+
+
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -120,6 +129,9 @@ posterButton.addEventListener('click', showPosterForm)
 savePosterButton.addEventListener('click', showSavedPosters)
 neverMindButton.addEventListener('click', displayMain)
 backToMainButton.addEventListener('click', displayMain)
+makePosterButton.addEventListener('click', showNewPoster)
+
+
 // functions and event handlers go here 👇
 
 function getRandomIndex(array) {
@@ -153,3 +165,23 @@ function displayMain() {
   posterForm.classList.add('hidden')
 
 }
+
+function createNewPoster() {
+  var imageInput = document.getElementById('poster-image-url').value;
+  var titleInput = document.getElementById('poster-title').value;
+  var quoteInput = document.getElementById('poster-quote').value;
+  images.push(imageInput);
+  titles.push(titleInput);
+  quotes.push(quoteInput);
+  currentPoster = new Poster(imageInput, titleInput, quoteInput)
+}
+
+function showNewPoster(event) {
+  event.preventDefault();
+  createNewPoster(); 
+  displayMain();
+  posterImage.src = currentPoster.imageURL;
+  posterQuote.innerText = currentPoster.quote;
+  posterTitle.innerText = currentPoster.title
+}
+
