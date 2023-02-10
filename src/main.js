@@ -12,8 +12,8 @@ var savePosterPage = document.querySelector('.saved-posters')
 var neverMindButton = document.querySelector('.show-main')
 var backToMainButton = document.querySelector('.back-to-main')
 var makePosterButton = document.querySelector('.make-poster')
+var savePosterButton = document.querySelector('.save-poster')
 
-// var titleInput = document.getElementById('poster-title')
 
 
 
@@ -130,7 +130,7 @@ savePosterButton.addEventListener('click', showSavedPosters)
 neverMindButton.addEventListener('click', displayMain)
 backToMainButton.addEventListener('click', displayMain)
 makePosterButton.addEventListener('click', showNewPoster)
-
+savePosterButton.addEventListener('click', savePoster)
 
 // functions and event handlers go here 👇
 
@@ -184,4 +184,18 @@ function showNewPoster(event) {
   posterQuote.innerText = currentPoster.quote;
   posterTitle.innerText = currentPoster.title
 }
+
+function savePoster() {
+    if (!savedPosters.includes(currentPoster)) {
+      savedPosters.push(currentPoster);
+    }
+  }
+
+    
+  
+ 
+
+
+
+  
 
