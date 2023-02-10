@@ -12,8 +12,8 @@ var savePosterPage = document.querySelector('.saved-posters')
 var neverMindButton = document.querySelector('.show-main')
 var backToMainButton = document.querySelector('.back-to-main')
 var makePosterButton = document.querySelector('.make-poster')
-var savePosterButton = document.querySelector('.save-poster')
-
+var saveCurrentButton = document.querySelector('.save-poster')
+var savedPostersGrid = document.querySelector('.saved-posters-grid')
 
 
 
@@ -130,7 +130,7 @@ savePosterButton.addEventListener('click', showSavedPosters)
 neverMindButton.addEventListener('click', displayMain)
 backToMainButton.addEventListener('click', displayMain)
 makePosterButton.addEventListener('click', showNewPoster)
-savePosterButton.addEventListener('click', savePoster)
+saveCurrentButton.addEventListener('click', savePoster)
 
 // functions and event handlers go here 👇
 
@@ -155,6 +155,7 @@ mainPoster.classList.add('hidden')
 }
 
 function showSavedPosters() {
+  addSavedPictures()
   mainPoster.classList.add('hidden')
   savePosterPage.classList.remove('hidden')
 }
@@ -191,7 +192,16 @@ function savePoster() {
     }
   }
 
-    
+function addSavedPictures() {
+  for (var i = 0; i < savedPosters.length; i++) {
+    savedPostersGrid.innerHTML += 
+    `<section class="mini-poster" id=${savedPosters[i].id}>
+      <img class="mini-poster img" src="${savedPosters[i].imageURL}" alt="nothin' to see here"></img>
+      <h2 class="h2">${savedPosters[i].title}</h2>
+      <h4 class="h4">${savedPosters[i].quote}</h4>
+    </section>`
+  }
+}  
   
  
 
