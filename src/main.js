@@ -15,11 +15,6 @@ var makePosterButton = document.querySelector('.make-poster')
 var saveCurrentButton = document.querySelector('.save-poster')
 var savedPostersGrid = document.querySelector('.saved-posters-grid')
 
-
-
-
-
-
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -131,6 +126,7 @@ neverMindButton.addEventListener('click', displayMain)
 backToMainButton.addEventListener('click', displayMain)
 makePosterButton.addEventListener('click', showNewPoster)
 saveCurrentButton.addEventListener('click', savePoster)
+savedPostersGrid.addEventListener('dblclick', deleteSavedPoster)
 
 // functions and event handlers go here 👇
 
@@ -164,7 +160,6 @@ function displayMain() {
   mainPoster.classList.remove('hidden')
   savePosterPage.classList.add('hidden')
   posterForm.classList.add('hidden')
-
 }
 
 function createNewPoster() {
@@ -187,12 +182,13 @@ function showNewPoster(event) {
 }
 
 function savePoster() {
-    if (!savedPosters.includes(currentPoster)) {
+  if (!savedPosters.includes(currentPoster)) {
       savedPosters.push(currentPoster);
-    }
   }
+}
 
 function addSavedPictures() {
+  savedPostersGrid.innerHTML = '';
   for (var i = 0; i < savedPosters.length; i++) {
     savedPostersGrid.innerHTML += 
     `<section class="mini-poster" id=${savedPosters[i].id}>
@@ -202,6 +198,16 @@ function addSavedPictures() {
     </section>`
   }
 }  
+
+function deleteSavedPoster(event) {
+  var thisPoster = event.target.parentElement.id.toString();
+    for (var i = 0; i < savedPosters.length; i++) {
+    if(thisPoster === savedPosters[i].id.toString()) {
+      savedPosters.splice(i,1)
+    }
+  }
+  showSavedPosters();
+}
   
  
 
